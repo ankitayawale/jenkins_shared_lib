@@ -1,4 +1,4 @@
- def call(String project, String ImageTag, String hubUser){
+ def dockerPushToHub(String fullImageName, String ImageTag, ){
      withCredentials([usernamePassword(
              credentialsId: "docker",
              usernameVariable: "USER",
