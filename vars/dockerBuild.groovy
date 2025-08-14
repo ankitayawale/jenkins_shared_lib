@@ -7,7 +7,7 @@
     // """
  //}
 
-def call(String aws_account_id, String hubUser, String ecr_repoName){
+def call(String aws_account_id, String hubUser, String ecr_repoName, String region){
     
     sh """
      docker image build -t ${ecr_repoName} .
