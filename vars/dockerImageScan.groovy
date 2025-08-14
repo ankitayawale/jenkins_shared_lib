@@ -1,10 +1,10 @@
- def call(String project, String ImageTag, String hubUser){
+ //def call(String project, String ImageTag, String hubUser){
     
-     sh """   
-      trivy image ${hubUser}/${project}:${ImageTag} > scan.txt
-      cat scan.txt
-     """
- }
+     //sh """   
+      //trivy image ${hubUser}/${project}:${ImageTag} > scan.txt
+    //  cat scan.txt
+  //   """
+//}
 
 //def call(String aws_account_id, String region, String ecr_repoName){
     
@@ -13,3 +13,15 @@
     //cat scan.txt
   //  """
 //}
+
+
+
+// vars/dockerImageScan.groovy
+
+def call(String imageName, String imageTag) {
+    sh """
+        echo "🔍 Scanning image: ${imageName}:${imageTag}"
+        trivy image ${imageName}:${imageTag} > scan.txt
+        cat scan.txt
+    """
+}
