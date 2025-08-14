@@ -1,4 +1,4 @@
- def dockerPushToHub(String fullImageName, String ImageTag, ){
+ def dockerPushToHub(String fullImageName, String ImageTag ){
      withCredentials([usernamePassword(
              credentialsId: "docker",
              usernameVariable: "USER",
