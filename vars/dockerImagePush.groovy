@@ -1,16 +1,18 @@
- def dockerPushToHub(String fullImageName, String ImageTag, String dockerHubUser){
-     withCredentials([usernamePassword(
-             credentialsId: "docker",
-             usernameVariable: "USER",
-             passwordVariable: "PASS"
+ def dockerPushToHub(String imageName, String imageTag, String dockerHubUser) {
+    withCredentials([usernamePassword(
+            credentialsId: "docker",
+            usernameVariable: "USER",
+            passwordVariable: "PASS"
     )]) {
-         sh "docker login -u '$USER' -p '$PASS'"
+        sh "docker login -u '$USER' -p '$PASS'"
     }
-     def fullImageName = "${dockerHubUser}/${imageName}"
-     sh "docker image push ${fullImageName}:${ImageTag}"
-     sh "docker image tag ${fullImageName}:${imageTag} ${fullImageName}:latest"
-     sh "docker image push ${fullImageName}:latest"   
+
+    def fullImageName = "${dockerHubUser}/${imageName}"
+    sh "docker image push ${fullImageName}:${imageTag}"
+    sh "docker image tag ${fullImageName}:${imageTag} ${fullImageName}:latest"
+    sh "docker image push ${fullImageName}:latest"
 }
+
 
 
 //def call(String aws_account_id, String region, String ecr_repoName){
