@@ -1,4 +1,4 @@
- def dockerPushToHub(String fullImageName, String ImageTag ){
+ def dockerPushToHub(String fullImageName, String ImageTag, String dockerHubUser){
      withCredentials([usernamePassword(
              credentialsId: "docker",
              usernameVariable: "USER",
@@ -6,7 +6,9 @@
     )]) {
          sh "docker login -u '$USER' -p '$PASS'"
     }
+     def fullImageName = "${dockerHubUser}/${imageName}"
      sh "docker image push ${fullImageName}:${ImageTag}"
+     sh "docker image tag ${fullImageName}:${imageTag} ${fullImageName}:latest"
      sh "docker image push ${fullImageName}:latest"   
 }
 
